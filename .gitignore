@@ -1,0 +1,23 @@
+# Ignorar diretórios de compilação
+target/
+build/
+out/
+
+# Ignorar arquivos do IntelliJ
+.idea/
+*.iml
+
+# Ignorar dependências
+node_modules/
+*.jar
+*.war
+
+# Ignorar arquivos de configuração sensíveis
+application.properties
+application.yml
+.env
+
+# Ignorar logs
+logs/
+*.log
+
