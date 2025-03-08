@@ -17,12 +17,6 @@ public class BibleController {
         this.repository = repository;
     }
 
-    // Search all verses from a given chapter
-    @GetMapping("/{bookId}/{chapter}")
-    public List<Verse> getAllVerses(@PathVariable int bookId, @PathVariable int chapter) {
-        return repository.findByBookIdAndChapter(bookId, chapter);
-    }
-
     // Search a specific verse
     @GetMapping("/{bookId}/{chapter}/{verse}")
     public Verse getVerse(@PathVariable int bookId, @PathVariable int chapter, @PathVariable int verse) {
