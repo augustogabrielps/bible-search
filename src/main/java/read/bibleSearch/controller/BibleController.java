@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import read.bibleSearch.model.Verses;
 import read.bibleSearch.repository.VerseRepository;
 import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -51,6 +53,19 @@ public class BibleController {
 
         return ResponseEntity.ok(results);
     }
+
+    @GetMapping("{bookId}/{chapter}")
+    public ResponseEntity<?> getChapter(
+            @PathVariable int bookId,
+            @PathVariable int chapter
+    ){
+        List<Verses> verses = repository.findByBookIdAndChapterOrderByVerseAsc(bookId, chapter);
+        if(verses.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Chapter not found");
+        }
+        return ResponseEntity.ok(verses);
+    }
+
 }
 
 
