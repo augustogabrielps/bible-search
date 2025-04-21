@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 @RestController
 @RequestMapping("/api/bible")
 public class BibleController {
@@ -43,11 +42,11 @@ public class BibleController {
             @RequestParam String query,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
-    ){
+    ) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Verses> results = repository.findByTextContainingIgnoreCase(query, pageable);
 
-        if(results.isEmpty()){
+        if (results.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Verse not found");
         }
 
@@ -58,9 +57,9 @@ public class BibleController {
     public ResponseEntity<?> getChapter(
             @PathVariable int bookId,
             @PathVariable int chapter
-    ){
+    ) {
         List<Verses> verses = repository.findByBookIdAndChapterOrderByVerseAsc(bookId, chapter);
-        if(verses.isEmpty()){
+        if (verses.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Chapter not found");
         }
         return ResponseEntity.ok(verses);
