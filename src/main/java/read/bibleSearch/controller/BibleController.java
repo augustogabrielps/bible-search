@@ -65,7 +65,6 @@ public class BibleController {
         }
         return ResponseEntity.ok(verses);
     }
-
 }
 
 
